@@ -91,11 +91,6 @@ def test_encoding_method(train_images,train_angles,test_images, test_angles, met
     BIAS1 = rand(hid_layer_size) - 0.5 # Bias for hidden layer
     BIAS2 = rand(out_layer_size) - 0.5 # Bias for output layer
 
-    # Initial weight and bias updates
-    IN_HID_del = zeros_like(IN_HID)
-    HID_OUT_del = zeros_like(HID_OUT)
-    BIAS1_del = zeros_like(BIAS1)
-    BIAS2_del = zeros_like(BIAS2)
 
     # Train
     for j in range(num_iters):
@@ -123,11 +118,6 @@ def test_encoding_method(train_images,train_angles,test_images, test_angles, met
             dBIAS1 = dACT1
             dBIAS2 = dACT2
 
-            # Update the weight updates 
-            IN_HID_del = momentum*IN_HID_del + (1-momentum)*dIN_HID
-            HID_OUT_del = momentum*HID_OUT_del + (1-momentum)*dHID_OUT
-            BIAS1_del = momentum*BIAS1_del + (1-momentum)*dBIAS1
-            BIAS2_del = momentum*BIAS2_del + (1-momentum)*dBIAS2
 
             # Update the weights
             HID_OUT -= alpha*dHID_OUT
